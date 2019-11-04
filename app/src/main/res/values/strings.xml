@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Awesome Jokes</string>
+    <string name="no_categories_available_at_the_moment">No Categories Available At The Moment</string>
+    <string name="no_sub_categories_available_at_the_moment">No Sub-Categories Available At The Moment</string>
+    <string name="no_data">No Data Available</string>
+
+</resources>
