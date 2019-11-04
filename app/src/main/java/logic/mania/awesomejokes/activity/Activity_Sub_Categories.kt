@@ -21,7 +21,6 @@ import org.json.JSONObject
 class Activity_Sub_Categories : AppCompatActivity() {
 
     private var no_sub_category_list: TextView? = null
-
     var car = "Toyota Matrix"
 
 

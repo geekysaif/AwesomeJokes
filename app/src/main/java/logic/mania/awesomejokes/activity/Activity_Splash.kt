@@ -8,7 +8,7 @@ import logic.mania.awesomejokes.R
 
 class Activity_Splash : AppCompatActivity() {
 
-    private val SPLASH_TIME_OUT:Long=5000 // 5 sec
+    private val SPLASH_TIME_OUT:Long=2000 // 5 sec
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

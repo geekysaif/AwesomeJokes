@@ -25,7 +25,6 @@ import org.json.JSONArray
 
           holder?.category_name.setOnClickListener {
               val id:String =jsonArray.getJSONObject(position).getString("id")
-
               val intent = Intent(context, Activity_Sub_Categories::class.java)
               intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
               intent.putExtra("subcat_id", id)
