@@ -4,4 +4,11 @@
     <string name="no_sub_categories_available_at_the_moment">No Sub-Categories Available At The Moment</string>
     <string name="no_data">No Data Available</string>
 
+
+    <string name="admob_appid">ca-app-pub-3940256099942544~3347511713</string>
+    <string name="admob_bannerid">ca-app-pub-3940256099942544/6300978111</string>
+    <string name="admob_interstitiaid">ca-app-pub-3940256099942544/1033173712</string>
+
+
+
 </resources>

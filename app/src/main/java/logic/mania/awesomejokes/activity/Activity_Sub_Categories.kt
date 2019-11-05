@@ -10,6 +10,10 @@ import com.android.volley.Request
 import com.android.volley.Response
 import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
+import com.google.android.gms.ads.AdListener
+import com.google.android.gms.ads.AdRequest
+import com.google.android.gms.ads.AdView
+import com.google.android.gms.ads.MobileAds
 import kotlinx.android.synthetic.main.activity__sub__categories.*
 import kotlinx.android.synthetic.main.activity_categories.*
 import logic.mania.awesomejokes.R
@@ -22,6 +26,7 @@ class Activity_Sub_Categories : AppCompatActivity() {
 
     private var no_sub_category_list: TextView? = null
     var car = "Toyota Matrix"
+    lateinit var mAdView : AdView
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -38,8 +43,41 @@ class Activity_Sub_Categories : AppCompatActivity() {
 
         //adding a layoutmanager
         recyclerView.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
-
         loadData()
+
+
+        MobileAds.initialize(this) {}
+        mAdView = findViewById(R.id.adView)
+        val adRequest = AdRequest.Builder().build()
+        mAdView.loadAd(adRequest)
+
+        mAdView.adListener = object: AdListener() {
+            override fun onAdLoaded() {
+                // Code to be executed when an ad finishes loading.
+            }
+
+            override fun onAdFailedToLoad(errorCode : Int) {
+                // Code to be executed when an ad request fails.
+            }
+
+            override fun onAdOpened() {
+                // Code to be executed when an ad opens an overlay that
+                // covers the screen.
+            }
+
+            override fun onAdClicked() {
+                // Code to be executed when the user clicks on an ad.
+            }
+
+            override fun onAdLeftApplication() {
+                // Code to be executed when the user has left the app.
+            }
+
+            override fun onAdClosed() {
+                // Code to be executed when the user is about to return
+                // to the app after tapping on an ad.
+            }
+        }
     }
 
 
