@@ -178,7 +178,7 @@ class Activity_Categories : AppCompatActivity() {
             Log.i("saif", "Permission to record denied")
         }
     }
-
+/**/
     private fun isNetworkAvailable(): Boolean {
         val connectivityManager = getSystemService(Context.CONNECTIVITY_SERVICE)
         return if (connectivityManager is ConnectivityManager) {
