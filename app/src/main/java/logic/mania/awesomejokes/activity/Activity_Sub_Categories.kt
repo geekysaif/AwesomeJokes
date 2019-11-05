@@ -1,9 +1,14 @@
 package logic.mania.awesomejokes.activity
 
+import android.content.Context
 import android.content.Intent
+import android.net.ConnectivityManager
+import android.net.NetworkInfo
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import android.widget.TextView
+import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.android.volley.Request
@@ -25,6 +30,7 @@ import org.json.JSONObject
 class Activity_Sub_Categories : AppCompatActivity() {
 
     private var no_sub_category_list: TextView? = null
+    private var no_network: TextView? = null
     var car = "Toyota Matrix"
     lateinit var mAdView : AdView
 
@@ -40,43 +46,56 @@ class Activity_Sub_Categories : AppCompatActivity() {
         //getting recyclerview from xml
         val recyclerView = findViewById<RecyclerView>(R.id.sub_category_list)
         no_sub_category_list = findViewById<TextView>(R.id.no_sub_category_list)
+        no_network = findViewById<TextView>(logic.mania.awesomejokes.R.id.no_network)
+
 
         //adding a layoutmanager
         recyclerView.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
-        loadData()
+
+        if (isNetworkAvailable()){
+
+            loadData()
 
 
-        MobileAds.initialize(this) {}
-        mAdView = findViewById(R.id.adView)
-        val adRequest = AdRequest.Builder().build()
-        mAdView.loadAd(adRequest)
+            MobileAds.initialize(this) {}
+            mAdView = findViewById(R.id.adView)
+            val adRequest = AdRequest.Builder().build()
+            mAdView.loadAd(adRequest)
 
-        mAdView.adListener = object: AdListener() {
-            override fun onAdLoaded() {
-                // Code to be executed when an ad finishes loading.
+            mAdView.adListener = object: AdListener() {
+                override fun onAdLoaded() {
+                    // Code to be executed when an ad finishes loading.
+                }
+
+                override fun onAdFailedToLoad(errorCode : Int) {
+                    // Code to be executed when an ad request fails.
+                }
+
+                override fun onAdOpened() {
+                    // Code to be executed when an ad opens an overlay that
+                    // covers the screen.
+                }
+
+                override fun onAdClicked() {
+                    // Code to be executed when the user clicks on an ad.
+                }
+
+                override fun onAdLeftApplication() {
+                    // Code to be executed when the user has left the app.
+                }
+
+                override fun onAdClosed() {
+                    // Code to be executed when the user is about to return
+                    // to the app after tapping on an ad.
+                }
             }
+        }
 
-            override fun onAdFailedToLoad(errorCode : Int) {
-                // Code to be executed when an ad request fails.
-            }
-
-            override fun onAdOpened() {
-                // Code to be executed when an ad opens an overlay that
-                // covers the screen.
-            }
-
-            override fun onAdClicked() {
-                // Code to be executed when the user clicks on an ad.
-            }
-
-            override fun onAdLeftApplication() {
-                // Code to be executed when the user has left the app.
-            }
-
-            override fun onAdClosed() {
-                // Code to be executed when the user is about to return
-                // to the app after tapping on an ad.
-            }
+        else{
+            no_network!!.visibility = View.VISIBLE
+            sub_category_list!!.visibility = View.GONE
+            val toast = Toast.makeText(applicationContext, "Please Check Your Internet Connection....", Toast.LENGTH_LONG)
+            toast.show()
         }
     }
 
@@ -107,5 +126,13 @@ class Activity_Sub_Categories : AppCompatActivity() {
             },
             Response.ErrorListener { no_category_list!!.text = "That didn't work!" })
         queue.add(stringReq)
+    }
+
+    private fun isNetworkAvailable(): Boolean {
+        val connectivityManager = getSystemService(Context.CONNECTIVITY_SERVICE)
+        return if (connectivityManager is ConnectivityManager) {
+            val networkInfo: NetworkInfo? = connectivityManager.activeNetworkInfo
+            networkInfo?.isConnected ?: false
+        } else false
     }
 }

@@ -3,7 +3,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-
     android:visibility="visible">
 
     <androidx.recyclerview.widget.RecyclerView
@@ -22,6 +21,18 @@
         android:layout_centerInParent="true"
         android:fontFamily="serif"
         android:text="@string/no_categories_available_at_the_moment"
+        android:textAlignment="center"
+        android:textColor="@color/colorPrimary"
+        android:textSize="18sp"
+        android:visibility="gone" />
+
+    <TextView
+        android:id="@+id/no_network"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:fontFamily="serif"
+        android:text="@string/please_turn_on_your_internet_connection"
         android:textAlignment="center"
         android:textColor="@color/colorPrimary"
         android:textSize="18sp"

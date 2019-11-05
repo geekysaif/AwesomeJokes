@@ -8,7 +8,7 @@
     <string name="admob_appid">ca-app-pub-3940256099942544~3347511713</string>
     <string name="admob_bannerid">ca-app-pub-3940256099942544/6300978111</string>
     <string name="admob_interstitiaid">ca-app-pub-3940256099942544/1033173712</string>
-
+    <string name="please_turn_on_your_internet_connection">Please Turn On Your Internet Connection..</string>
 
 
 </resources>
