@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "173022109886",
+    "firebase_url": "https://awesome-jokes-566a7.firebaseio.com",
+    "project_id": "awesome-jokes-566a7",
+    "storage_bucket": "awesome-jokes-566a7.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:173022109886:android:90b0db9bead2d59be7feef",
+        "android_client_info": {
+          "package_name": "logic.mania.awesomejokes"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "173022109886-siqujagi8momprh6o3lpeq2bm2mjsmd7.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDTmkEV_DNV7b6htXjd5QkcV5v03VvCZDw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "173022109886-siqujagi8momprh6o3lpeq2bm2mjsmd7.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
