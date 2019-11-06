@@ -6,6 +6,7 @@ import android.net.NetworkInfo
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import android.widget.ProgressBar
 import android.widget.TextView
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -31,6 +32,8 @@ class Activity_Data : AppCompatActivity() {
 
     private var no_data_list: TextView? = null
     private var no_network: TextView? = null
+    private var progressBar: ProgressBar? = null
+
     var car = "Toyota Matrix"
     lateinit var mAdView : AdView
 
@@ -48,6 +51,7 @@ class Activity_Data : AppCompatActivity() {
         val recyclerView = findViewById<RecyclerView>(R.id.data_list)
         no_data_list = findViewById<TextView>(R.id.no_data_list)
         no_network = findViewById<TextView>(logic.mania.awesomejokes.R.id.no_network)
+        progressBar = findViewById<ProgressBar>(logic.mania.awesomejokes.R.id.progressBar)
 
         //adding a layoutmanager
         recyclerView.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
@@ -97,6 +101,8 @@ class Activity_Data : AppCompatActivity() {
 
 
     fun loadData() {
+
+        progressBar!!.visibility = View.VISIBLE
         // Instantiate the RequestQueue.
         val queue = Volley.newRequestQueue(this)
         val url: String = "https://gofugly.in/api/content/"+car
@@ -111,6 +117,7 @@ class Activity_Data : AppCompatActivity() {
                 val jsonArray2: JSONArray = jsonObj2.getJSONArray("result")
 
                 data_list.adapter = Adapter_Data(jsonArray2, applicationContext)
+                progressBar!!.visibility = View.GONE
                 /*  var str_user: String = ""
 
                   for (i in 0 until jsonArray.length()) {

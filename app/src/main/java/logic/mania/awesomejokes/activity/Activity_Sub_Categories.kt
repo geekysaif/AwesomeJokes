@@ -7,6 +7,7 @@ import android.net.NetworkInfo
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import android.widget.ProgressBar
 import android.widget.TextView
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -31,6 +32,8 @@ class Activity_Sub_Categories : AppCompatActivity() {
 
     private var no_sub_category_list: TextView? = null
     private var no_network: TextView? = null
+    private var progressBar: ProgressBar? = null
+
     var car = "Toyota Matrix"
     lateinit var mAdView : AdView
 
@@ -47,7 +50,7 @@ class Activity_Sub_Categories : AppCompatActivity() {
         val recyclerView = findViewById<RecyclerView>(R.id.sub_category_list)
         no_sub_category_list = findViewById<TextView>(R.id.no_sub_category_list)
         no_network = findViewById<TextView>(logic.mania.awesomejokes.R.id.no_network)
-
+        progressBar = findViewById<ProgressBar>(logic.mania.awesomejokes.R.id.progressBar)
 
         //adding a layoutmanager
         recyclerView.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
@@ -102,6 +105,7 @@ class Activity_Sub_Categories : AppCompatActivity() {
 
     // function for network call
     fun loadData() {
+        progressBar!!.visibility = View.VISIBLE
         // Instantiate the RequestQueue.
         val queue = Volley.newRequestQueue(this)
         val url: String = "https://gofugly.in/api/sub_categories/"+car
@@ -116,6 +120,7 @@ class Activity_Sub_Categories : AppCompatActivity() {
                 val jsonArray1: JSONArray = jsonObj1.getJSONArray("result")
 
                 sub_category_list.adapter = Adapter_SubCategories(jsonArray1, applicationContext)
+                progressBar!!.visibility = View.GONE
                 /*  var str_user: String = ""
 
                   for (i in 0 until jsonArray.length()) {

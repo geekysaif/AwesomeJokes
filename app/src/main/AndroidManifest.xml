@@ -14,16 +14,22 @@
         android:theme="@style/AppTheme"
         tools:targetApi="m"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".activity.Activity_Data"/>
-        <activity android:name=".activity.Activity_Sub_Categories" />
-        <activity android:name=".activity.Activity_Splash">
+        <activity android:name=".activity.Activity_Data"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".activity.Activity_Sub_Categories"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".activity.Activity_Splash"
+            android:screenOrientation="portrait"
+
+            >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".activity.Activity_Categories" />
+        <activity android:name=".activity.Activity_Categories"
+            android:screenOrientation="portrait"/>
 
         <!-- Sample AdMob App ID: ca-app-pub-3940256099942544~3347511713 -->
         <meta-data
