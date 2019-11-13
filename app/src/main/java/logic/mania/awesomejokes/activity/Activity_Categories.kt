@@ -105,7 +105,7 @@ class Activity_Categories : AppCompatActivity() {
             }
 
             mInterstitialAd = InterstitialAd(this)
-            mInterstitialAd.adUnitId = "ca-app-pub-3940256099942544/1033173712"
+            mInterstitialAd.adUnitId = "ca-app-pub-7919524482733807/3135537256"
             mInterstitialAd.loadAd(AdRequest.Builder().build())
             mInterstitialAd.show()
 
