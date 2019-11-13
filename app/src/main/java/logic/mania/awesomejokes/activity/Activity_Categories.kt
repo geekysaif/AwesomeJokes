@@ -2,12 +2,17 @@ package logic.mania.awesomejokes.activity
 
 
 import android.Manifest
+import android.content.ActivityNotFoundException
 import android.content.Context
+import android.content.Intent
 import android.content.pm.PackageManager
 import android.net.ConnectivityManager
 import android.net.NetworkInfo
+import android.net.Uri
 import android.os.Bundle
 import android.util.Log
+import android.view.Menu
+import android.view.MenuItem
 import android.view.View
 import android.widget.ProgressBar
 import android.widget.TextView
@@ -15,6 +20,7 @@ import android.widget.Toast
 
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.android.volley.Request
@@ -56,7 +62,8 @@ class Activity_Categories : AppCompatActivity() {
         progressBar = findViewById<ProgressBar>(logic.mania.awesomejokes.R.id.progressBar)
 
         //adding a layoutmanager
-        recyclerView.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
+       // recyclerView.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
+        recyclerView.layoutManager = GridLayoutManager(applicationContext, 2)
 
         setupPermissions()
 
@@ -209,5 +216,45 @@ class Activity_Categories : AppCompatActivity() {
         }).start()
     }
 
+    override fun onCreateOptionsMenu(menu: Menu): Boolean {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        menuInflater.inflate(R.menu.menu_main, menu)
+        return true
+    }
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when (item.itemId) {
+            R.id.action_share -> {
 
+                val sendIntent = Intent()
+                sendIntent.action = Intent.ACTION_SEND
+                sendIntent.putExtra(
+                    Intent.EXTRA_TEXT,"Download this Awesome App and share Jokes, Shayri, Motivational Quotes ,Thoughts, Intresting Stories and so on with your friends and family. Download Now\n " + "https://play.google.com/store/apps/details?id=" + applicationContext.packageName
+                )
+                sendIntent.type = "text/plain"
+                //    sendIntent.setPackage("*/*")
+                if (sendIntent.resolveActivity(applicationContext.getPackageManager()) != null) {
+                    sendIntent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
+                    applicationContext.startActivity(sendIntent)
+                }
+
+                true
+            }
+            R.id.action_rate ->{
+
+                rateApp()
+                return true
+            }
+
+            else -> super.onOptionsItemSelected(item)
+        }
+    }
+    fun rateApp() {
+        val uri = Uri.parse("market://details?id=$packageName")
+        val myAppLinkToMarket = Intent(Intent.ACTION_VIEW, uri)
+        try {
+            startActivity(myAppLinkToMarket)
+        } catch (e: ActivityNotFoundException) {
+            Toast.makeText(this, "Impossible to find an application for the market", Toast.LENGTH_LONG).show()
+        }
+    }
 }

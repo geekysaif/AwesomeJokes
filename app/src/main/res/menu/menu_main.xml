@@ -1,0 +1,22 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="example.javatpoint.com.kotlinoptionsmenu.MainActivity">
+    <item
+        android:id="@+id/action_rate"
+        android:orderInCategory="100"
+        android:visible="true"
+        app:showAsAction="ifRoom"
+        android:icon="@drawable/ic_rate"
+        android:title="Rate App"/>
+
+    <item
+        android:id="@+id/action_share"
+        android:orderInCategory="100"
+        android:visible="true"
+        app:showAsAction="ifRoom"
+        android:icon="@drawable/ic_share"
+        android:title="Rate App"/>
+
+
+</menu>
