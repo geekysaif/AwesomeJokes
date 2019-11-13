@@ -11,4 +11,8 @@
     <string name="please_turn_on_your_internet_connection">Please Turn On Your Internet Connection..</string>
 
 
+
+    <string name="SENDER_ID">awesome-jokes-566a7</string>
+    <string name="notifications_admin_channel_name">Awesome Jokes</string>
+    <string name="notifications_admin_channel_description">Awesome Jokes Notification</string>
 </resources>

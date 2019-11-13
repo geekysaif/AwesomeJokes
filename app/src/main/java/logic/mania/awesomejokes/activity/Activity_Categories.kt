@@ -22,6 +22,7 @@ import com.android.volley.Response
 import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
 import com.google.android.gms.ads.*
+import com.google.firebase.iid.FirebaseInstanceId
 
 import kotlinx.android.synthetic.main.activity_categories.*
 import logic.mania.awesomejokes.R
@@ -29,11 +30,12 @@ import logic.mania.awesomejokes.R
 import logic.mania.awesomejokes.adapter.Adapter_Categories
 import org.json.JSONArray
 import org.json.JSONObject
-
+import java.io.IOException
 
 
 class Activity_Categories : AppCompatActivity() {
 
+    private val TAG = "MyFirebaseToken"
     private var no_category_list: TextView? = null
     private var no_network: TextView? = null
     private var progressBar: ProgressBar? = null
@@ -46,6 +48,7 @@ class Activity_Categories : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_categories)
 
+        initView()
         //getting recyclerview from xml
         val recyclerView = findViewById<RecyclerView>(R.id.category_list)
         no_category_list = findViewById<TextView>(logic.mania.awesomejokes.R.id.no_category_list)
@@ -194,6 +197,17 @@ class Activity_Categories : AppCompatActivity() {
         } else false
     }
 
+
+    private fun initView() {
+        //This method will use for fetching Token
+        Thread(Runnable {
+            try {
+                Log.i(TAG, FirebaseInstanceId.getInstance().getToken(getString(R.string.SENDER_ID), "FCM"))
+            } catch (e: IOException) {
+                e.printStackTrace()
+            }
+        }).start()
+    }
 
 
 }
